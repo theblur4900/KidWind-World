@@ -32,8 +32,22 @@ def on_button_pressed_a():
             max_val = light_list[i]
             best_angle = i
 
-    pins.servo_write_pin(AnalogPin.P8, best_angle)
     pause(500)        
+    
+    pins.servo_write_pin(AnalogPin.P12, -45)
+    for i in range(181):
+            pins.servo_write_pin(AnalogPin.P8, i)
+            pause(40)
+            current_voltage = pins.analog_read_pin(AnalogPin.P4)
+            print("Rotate Volts: " + str(current_voltage))
+            light_list.append(current_voltage)
+
+    for i in range(len(light_list)):
+        if light_list[i] > max_val:
+            max_val = light_list[i]
+            best_angle = i
+
+    pins.servo_write_pin(AnalogPin.P8, best_angle)
 
     for i in range(181):
         pins.servo_write_pin(AnalogPin.P12, i)
