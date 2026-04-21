@@ -32,7 +32,7 @@ def on_button_pressed_a():
     best_angle_rotate = 0
 
     for i in range(181): # Rotation Logic
-        pins.servo_write_pin(Tilt, -45)
+        pins.servo_write_pin(Tilt, 135)
         pins.servo_write_pin(Rotate, i)
 
         pause(40)
@@ -47,11 +47,11 @@ def on_button_pressed_a():
 
     pins.servo_write_pin(Rotate, best_angle_rotate)
     print("Best Angle Found! " + best_angle_rotate + " Degrees (Rotate)")
-    print("Maximum Voltage (Rotate): "+ int((max_val_rotate/2046)*3.3)+ "V (" + max_val_rotate + "/2046)")
+    print("Maximum Voltage (Rotate): ~"+ int((max_val_rotate/2046)*3.3)+ "V (" + max_val_rotate + "/2046)")
 
     for i in range(181): # Tilt Logic 
     
-        pins.servo_write_pin(Tilt, -i)
+        pins.servo_write_pin(Tilt, i)
 
         pause(40)
         current_voltage_tilt = (pins.analog_read_pin(Solar_0) + pins.analog_read_pin(Solar_1))
@@ -65,8 +65,13 @@ def on_button_pressed_a():
 
     pins.servo_write_pin(Tilt, best_angle_tilt)
     print("Best Angle Found! " + best_angle_tilt + " Degrees (Tilt)")
-    print("Maximum Voltage (Tilt): "+ int((max_val_tilt/2046)*3.3)+ "V (" + max_val_tilt + "/2046)")
+    print("Maximum Voltage (Tilt): ~"+ int((max_val_tilt/2046)*3.3)+ "V (" + max_val_tilt + "/2046)")
     music.play(music.tone_playable(262, music.beat(BeatFraction.WHOLE)), music.PlaybackMode.UNTIL_DONE)
+    print("\n---Results---\n")
+    print("Best Angle (Rotate): " + best_angle_rotate + " Degrees")
+    print("Best Angle (Tilt): " + best_angle_tilt + " Degrees")
+    print("Maximum Voltage (Rotate): ~" + int((max_val_rotate/2046)*3.3)+ "V (" + max_val_rotate + "/2046)")
+    print("Maximum Voltage (Tilt): ~" + int((max_val_tilt/2046)*3.3)+ "V (" + max_val_tilt + "/2046)")
 input.on_button_pressed(Button.A, on_button_pressed_a)
 
     
