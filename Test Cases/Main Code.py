@@ -1,7 +1,7 @@
 # This program was written for EnergyOptix in the KidWInd Challenge.
 # This program is not to be used by anyone other then those authorized.
 # Written by Austin Dixon and Justin Pongpairoj
-# Solar Panels on Pins 3 and 4, Rotation Servo on Pin 8, and Tilt Servo on Pin 12
+# Solar Panels on Pins 0 and 2, Rotation Servo on Pin 3, and Tilt Servo on Pin 4
 
 # Variable Declarations
 light_list_tilt = []
