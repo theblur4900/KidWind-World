@@ -38,7 +38,7 @@ def on_button_pressed_a():
         pause(55)
         
         current_voltage_rotate = (pins.analog_read_pin(Solar_0) + pins.analog_read_pin(Solar_1))
-        print("Current Voltage (Rotate): ~" + str(int((current_voltage_rotate/2046)*3.3)) + "V (" + str(current_voltage_rotate) + "/2046)")
+        print("Current Voltage (Rotate): ~" + str(int((current_voltage_rotate/1023)*3.3)) + "V (" + str(current_voltage_rotate) + "/3069)")
         if current_voltage_rotate > max_val_rotate:
             max_val_rotate = current_voltage_rotate
             best_angle_rotate = i
@@ -53,15 +53,15 @@ def on_button_pressed_a():
         pins.servo_write_pin(Rotate, angle)
         pause(55)
         
-        current_voltage_rotate = (pins.analog_read_pin(Solar_0) + pins.analog_read_pin(Solar_1))
-        print("Current Voltage (Rotate): ~" + str(int((current_voltage_rotate/2046)*3.3)) + "V (" + str(current_voltage_rotate) + "/2046)")
+        current_voltage_rotate = (pins.analog_read_pin(Solar_0) + pins.analog_read_pin(Solar_1) + pins.analog_read_pin(Solar_2))
+        print("Current Voltage (Rotate): ~" + str(int((current_voltage_rotate/1023)*3.3)) + "V (" + str(current_voltage_rotate) + "/3069)")
         if current_voltage_rotate > max_val_rotate:
             max_val_rotate = current_voltage_rotate
             best_angle_rotate = angle
 
     pins.servo_write_pin(Rotate, best_angle_rotate)
     print("Best Angle Found! " + str(best_angle_rotate) + " Degrees (Rotate)")
-    print("Maximum Voltage (Rotate): ~"+ str(int((max_val_rotate/2046)*3.3)) + "V (" + str(max_val_rotate) + "/2046)")
+    print("Maximum Voltage (Rotate): ~"+ str(int((max_val_rotate/1023)*3.3)) + "V (" + str(max_val_rotate) + "/3069)")
     
     pins.servo_write_pin(Tilt, 0)
     pause(1000)
@@ -70,7 +70,7 @@ def on_button_pressed_a():
         pins.servo_write_pin(Tilt, i)
         pause(55)
         current_voltage_tilt = (pins.analog_read_pin(Solar_0) + pins.analog_read_pin(Solar_1))
-        print("Current Voltage (Tilt): ~" + str(int((current_voltage_tilt/2046)*3.3)) + "V (" + str(current_voltage_tilt) + "/2046)")
+        print("Current Voltage (Tilt): ~" + str(int((current_voltage_tilt/1023)*3.3)) + "V (" + str(current_voltage_tilt) + "/3069)")
         light_list_tilt.append(current_voltage_tilt)
 
     for i in range(len(light_list_tilt)):
@@ -80,14 +80,14 @@ def on_button_pressed_a():
         
     pins.servo_write_pin(Tilt, best_angle_tilt)
     print("Best Angle Found! " + str(best_angle_tilt) + " Degrees (Tilt)")
-    print("Maximum Voltage (Tilt): ~"+ str(int((max_val_tilt/2046)*3.3)) + "V (" + str(max_val_tilt) + "/2046)")
+    print("Maximum Voltage (Tilt): ~"+ str(int((max_val_tilt/1023)*3.3)) + "V (" + str(max_val_tilt) + "/3069)")
     music.play(music.tone_playable(262, music.beat(BeatFraction.WHOLE)), music.PlaybackMode.UNTIL_DONE)
     
     print("\n---Results---\n")
     print("Best Angle (Rotate): " + str(best_angle_rotate) + " Degrees")
     print("Best Angle (Tilt): " + str(best_angle_tilt) + " Degrees")
-    print("Maximum Voltage (Rotate): ~" + str(int((max_val_rotate/2046)*3.3)) + "V (" + str(max_val_rotate) + "/2046)")
-    print("Maximum Voltage (Tilt): ~" + str(int((max_val_tilt/2046)*3.3)) + "V (" + str(max_val_tilt) + "/2046)")
+    print("Maximum Voltage (Rotate): ~" + str(int((max_val_rotate/1023)*3.3)) + "V (" + str(max_val_rotate) + "/3069)")
+    print("Maximum Voltage (Tilt): ~" + str(int((max_val_tilt/1023)*3.3)) + "V (" + str(max_val_tilt) + "/3069)")
 
 input.on_button_pressed(Button.A, on_button_pressed_a)
 
