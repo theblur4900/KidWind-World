@@ -1,7 +1,7 @@
 # This program was written for EnergyOptix in the KidWind Challenge.
 # This program is not to be used by anyone other then those authorized.
 # Written by Austin Dixon and Justin Pongpairoj
-# Solar Panels on Pins 0 and 2, Rotation Servo on Pin 3, and Tilt Servo on Pin 4
+# Solar Panels on Pins 2, 3, and 4, Reset Button on Pin 0, Rotation Servo on Pin 6, and Tilt Servo on Pin 9
 
 # Variable Declarations
 light_list_tilt = []
@@ -12,10 +12,11 @@ max_val_rotate = 0
 best_angle_rotate = 0
 
 # Constants
-Solar_0 = AnalogPin.P0
-Solar_1 = AnalogPin.P2
-Rotate = AnalogPin.P3
-Tilt = AnalogPin.P4
+Solar_0 = AnalogPin.P2
+Solar_1 = AnalogPin.P3
+Solar_2 = AnalogPin.P4
+Rotate = AnalogPin.P6
+Tilt = AnalogPin.P8
 
 # Movement Smoothing (Supposedly)
 pins.analog_set_period(Rotate, 20000)
@@ -44,7 +45,7 @@ def on_button_pressed_a():
 
     pins.servo_write_pin(Tilt, 45)
     pins.servo_write_pin(Rotate, 180)
-    pause(1000) 
+    pause(1000)
 
     for i in range(181):
         angle = 180 - i
@@ -63,7 +64,7 @@ def on_button_pressed_a():
     print("Maximum Voltage (Rotate): ~"+ str(int((max_val_rotate/2046)*3.3)) + "V (" + str(max_val_rotate) + "/2046)")
     
     pins.servo_write_pin(Tilt, 0)
-    pause(1000) 
+    pause(1000)
 
     for i in range(181): # Tilt Logic
         pins.servo_write_pin(Tilt, i)
@@ -96,3 +97,7 @@ def on_button_pressed_b():
     print("Successfully Zero'd!")
 
 input.on_button_pressed(Button.B, on_button_pressed_b)
+
+def on_pin_pressed_p0():
+    control.reset()
+input.on_pin_pressed(TouchPin.P0, on_pin_pressed_p0)
