@@ -2,6 +2,7 @@
 # This program is not to be used by anyone other then those authorized.
 # Written by Austin Dixon and Justin Pongpairoj
 # Solar Panels on Pins 2, 3, and 4, Reset Button on Pin 0, Rotation Servo on Pin 6, and Tilt Servo on Pin 8
+# Angle_0 can be used to set the angle of the tilt servo for the first pass, Angle_1 to set the angle for the second.
 
 # Variable Declarations
 light_list_tilt = []
@@ -17,6 +18,8 @@ Solar_1 = AnalogPin.P3
 Solar_2 = AnalogPin.P4
 Rotate = AnalogPin.P6
 Tilt = AnalogPin.P8
+Angle_0 = 135
+Angle_1 = 45
 
 # Movement Smoothing (Supposedly)
 pins.analog_set_period(Rotate, 20000)
@@ -33,7 +36,7 @@ def on_button_pressed_a():
     best_angle_rotate = 0
 
     for i in range(181): # Rotation Logic
-        pins.servo_write_pin(Tilt, 135)
+        pins.servo_write_pin(Tilt, Angle_0)
         pins.servo_write_pin(Rotate, i)
         pause(55)
         
@@ -49,7 +52,7 @@ def on_button_pressed_a():
 
     for i in range(181):
         angle = 180 - i
-        pins.servo_write_pin(Tilt, 45)
+        pins.servo_write_pin(Tilt, Angle_1)
         pins.servo_write_pin(Rotate, angle)
         pause(55)
         
