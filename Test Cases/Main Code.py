@@ -18,8 +18,8 @@ Solar_1 = AnalogPin.P3
 Solar_2 = AnalogPin.P4
 Rotate = AnalogPin.P6
 Tilt = AnalogPin.P8
-Angle_0 = 135
-Angle_1 = 45
+Angle_0 = 122
+Angle_1 = 32
 
 # Movement Smoothing (Supposedly)
 pins.analog_set_period(Rotate, 20000)
