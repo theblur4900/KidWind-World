@@ -1,7 +1,7 @@
 # This program was written for EnergyOptix in the KidWind Challenge.
-# This program is not to be used by anyone other then those authorized.
+# This program is not to be used by anyone other than those authorized.
 # Written by Austin Dixon and Justin Pongpairoj
-# Solar Panels on Pins 2, 3, and 4, Reset Button on Pin 0, Rotation Servo on Pin 6, and Tilt Servo on Pin 8
+# Solar Panels on Pins 2, 3, and 4, Reset Button on Pin 0, Button A on Pin 5, Button B on Pin 11, Rotation Servo on Pin 6, and Tilt Servo on Pin 8
 # Angle_0 can be used to set the angle of the tilt servo for the first pass, Angle_1 to set the angle for the second.
 
 # Variable Declarations
