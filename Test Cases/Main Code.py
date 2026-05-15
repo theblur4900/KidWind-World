@@ -97,7 +97,7 @@ input.on_button_pressed(Button.A, on_button_pressed_a)
 def on_button_pressed_b():
     pins.servo_write_pin(Tilt, 0)
     pins.servo_write_pin(Rotate, 0)
-    print("Successfully Zero'd!")
+    print("Successfully Zeroed!")
 
 input.on_button_pressed(Button.B, on_button_pressed_b)
 
